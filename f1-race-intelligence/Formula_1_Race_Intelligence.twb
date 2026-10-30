@@ -1,0 +1,297 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<workbook source-build='2024.1.0' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='f1_master_race_intelligence' inline='true' name='federated.f1_master' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='f1_master_race_intelligence' name='textscan.f1_master'>
+            <connection class='textscan' directory='data/processed' filename='f1_master_race_intelligence.csv' locale='en_US'>
+            </connection>
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.f1_master' name='f1_master_race_intelligence.csv' table='[f1_master_race_intelligence#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='[resultId]' ordinal='0' />
+            <column datatype='string' name='[raceId]' ordinal='0' />
+            <column datatype='string' name='[driverId]' ordinal='0' />
+            <column datatype='string' name='[constructorId]' ordinal='0' />
+            <column datatype='real' name='[number]' ordinal='0' />
+            <column datatype='string' name='[grid]' ordinal='0' />
+            <column datatype='real' name='[position]' ordinal='0' />
+            <column datatype='string' name='[positionText]' ordinal='0' />
+            <column datatype='string' name='[positionOrder]' ordinal='0' />
+            <column datatype='real' name='[points]' ordinal='0' />
+            <column datatype='string' name='[laps]' ordinal='0' />
+            <column datatype='real' name='[time]' ordinal='0' />
+            <column datatype='real' name='[milliseconds]' ordinal='0' />
+            <column datatype='real' name='[fastestLap]' ordinal='0' />
+            <column datatype='real' name='[rank]' ordinal='0' />
+            <column datatype='string' name='[fastestLapTime]' ordinal='0' />
+            <column datatype='real' name='[fastestLapSpeed]' ordinal='0' />
+            <column datatype='string' name='[statusId]' ordinal='0' />
+            <column datatype='string' name='[year]' ordinal='0' />
+            <column datatype='string' name='[round]' ordinal='0' />
+            <column datatype='string' name='[circuitId]' ordinal='0' />
+            <column datatype='string' name='[race_name]' ordinal='0' />
+            <column datatype='string' name='[date]' ordinal='0' />
+            <column datatype='string' name='[race_time]' ordinal='0' />
+            <column datatype='string' name='[race_url]' ordinal='0' />
+            <column datatype='string' name='[circuitRef]' ordinal='0' />
+            <column datatype='string' name='[circuit_name]' ordinal='0' />
+            <column datatype='string' name='[location]' ordinal='0' />
+            <column datatype='string' name='[country]' ordinal='0' />
+            <column datatype='real' name='[lat]' ordinal='0' />
+            <column datatype='real' name='[lng]' ordinal='0' />
+            <column datatype='string' name='[alt]' ordinal='0' />
+            <column datatype='string' name='[driverRef]' ordinal='0' />
+            <column datatype='real' name='[driver_number]' ordinal='0' />
+            <column datatype='string' name='[code]' ordinal='0' />
+            <column datatype='string' name='[forename]' ordinal='0' />
+            <column datatype='string' name='[surname]' ordinal='0' />
+            <column datatype='string' name='[dob]' ordinal='0' />
+            <column datatype='string' name='[driver_nationality]' ordinal='0' />
+            <column datatype='string' name='[driver_url]' ordinal='0' />
+            <column datatype='string' name='[constructorRef]' ordinal='0' />
+            <column datatype='string' name='[constructor_name]' ordinal='0' />
+            <column datatype='string' name='[constructor_nationality]' ordinal='0' />
+            <column datatype='string' name='[constructor_url]' ordinal='0' />
+            <column datatype='string' name='[status]' ordinal='0' />
+            <column datatype='string' name='[Season_Race_Key]' ordinal='0' />
+            <column datatype='string' name='[Driver_Full_Name]' ordinal='0' />
+            <column datatype='real' name='[Age_At_Race]' ordinal='0' />
+            <column datatype='string' name='[Circuit_Type]' ordinal='0' />
+            <column datatype='string' name='[DNF_Flag]' ordinal='0' />
+            <column datatype='string' name='[Podium_Flag]' ordinal='0' />
+            <column datatype='real' name='[Cumulative_Points]' ordinal='0' />
+            <column datatype='real' name='[Constructor_Cumulative_Points]' ordinal='0' />
+            <column datatype='real' name='[Reliability_Score]' ordinal='0' />
+            <column datatype='string' name='[Compound]' ordinal='0' />
+            <column datatype='real' name='[Tyre_Compound_Efficiency]' ordinal='0' />
+            <column datatype='string' name='[Home_Grand_Prix_Flag]' ordinal='0' />
+          </columns>
+        </relation>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[country]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+      <column datatype='string' name='[driver_nationality]' role='dimension' semantic-role='[Country].[Name]' type='nominal' />
+      <column datatype='real' name='[lat]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column datatype='real' name='[lng]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Cumulative Points (Driver)' datatype='real' name='[Calculation_7957351]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="RUNNING_SUM(SUM([points]))" />
+      </column>
+      <column caption='Cumulative Points (Constructor)' datatype='real' name='[Calculation_6631102]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="RUNNING_SUM(SUM([Constructor_Cumulative_Points]))" />
+      </column>
+      <column caption='Championship Gap to Leader' datatype='real' name='[Calculation_5020531]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="WINDOW_MAX(RUNNING_SUM(SUM([points]))) - RUNNING_SUM(SUM([points]))" />
+      </column>
+      <column caption='Tyre Strategy Efficiency Index' datatype='real' name='[Calculation_4546761]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="AVG([positionOrder])" />
+      </column>
+      <column caption='Circuit Win Rate' datatype='real' name='[Calculation_5888121]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([Podium_Flag]) / COUNT([resultId])" />
+      </column>
+      <column caption='Constructor DNF Rate' datatype='real' name='[Calculation_8429244]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([DNF_Flag]) / COUNT([resultId])" />
+      </column>
+      <column caption='Grid vs Finish Delta' datatype='real' name='[Calculation_8235494]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="AVG([grid] - [positionOrder])" />
+      </column>
+      <column caption='Points Per Race' datatype='real' name='[Calculation_2159850]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([points]) / COUNT([resultId])" />
+      </column>
+      <column caption='Total Podiums' datatype='integer' name='[Calculation_177891]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([Podium_Flag])" />
+      </column>
+      <column caption='Podium Share %' datatype='real' name='[Calculation_1509416]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([Podium_Flag]) / TOTAL(SUM([Podium_Flag]))" />
+      </column>
+      <column caption='Races Hosted per Country' datatype='integer' name='[Calculation_356702]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="COUNTD([raceId])" />
+      </column>
+      <column caption='Driver Career Points' datatype='real' name='[Calculation_5213585]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([points])" />
+      </column>
+      <column caption='Season Wins' datatype='integer' name='[Calculation_2006917]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF [positionOrder] = 1 THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Driver Win Rate' datatype='real' name='[Calculation_5357332]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF [positionOrder] = 1 THEN 1 ELSE 0 END) / COUNT([resultId])" />
+      </column>
+      <column caption='Career Race Starts' datatype='integer' name='[Calculation_3387885]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="COUNT([resultId])" />
+      </column>
+      <column caption='Constructor Era Label' datatype='string' name='[Calculation_4534849]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula="IF [year] &gt;= 2014 AND [year] &lt;= 2020 THEN 'Mercedes Hybrid Era' ELSEIF [year] &gt;= 2021 THEN 'Red Bull Era' ELSE 'V8 Era' END" />
+      </column>
+      <column caption='DNF Rate by Team' datatype='real' name='[Calculation_2455170]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM([DNF_Flag]) / COUNT([resultId])" />
+      </column>
+      <column caption='Reliability Score (Season Trend)' datatype='real' name='[Calculation_1086662]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="1 - (RUNNING_SUM(SUM([DNF_Flag])) / RUNNING_SUM(COUNT([resultId])))" />
+      </column>
+      <column caption='Engine Failure Count' datatype='integer' name='[Calculation_475859]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Engine') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Mechanical Failure Count' datatype='integer' name='[Calculation_9982208]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Mechanical') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Collision Count' datatype='integer' name='[Calculation_4322059]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Collision') OR CONTAINS([status], 'Accident') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Brake Failure Count' datatype='integer' name='[Calculation_1581329]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Brakes') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Gearbox Failure Count' datatype='integer' name='[Calculation_2968196]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Gearbox') OR CONTAINS([status], 'Transmission') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Electrical Failure Count' datatype='integer' name='[Calculation_9817315]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="SUM(IF CONTAINS([status], 'Electrical') OR CONTAINS([status], 'Hydraulics') THEN 1 ELSE 0 END)" />
+      </column>
+      <column caption='Season Reliability Trend' datatype='real' name='[Calculation_7974762]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula="WINDOW_AVG(SUM([DNF_Flag]) / COUNT([resultId]))" />
+      </column>
+      <column caption='Failure Category' datatype='string' name='[Calculation_4982452]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula="IF CONTAINS([status], 'Engine') THEN 'Engine' ELSEIF CONTAINS([status], 'Gearbox') OR CONTAINS([status], 'Transmission') THEN 'Gearbox/Transmission' ELSEIF CONTAINS([status], 'Brakes') THEN 'Brakes' ELSEIF CONTAINS([status], 'Electrical') OR CONTAINS([status], 'Hydraulics') THEN 'Electrical/Hydraulics' ELSEIF CONTAINS([status], 'Collision') OR CONTAINS([status], 'Accident') THEN 'Collision/Accident' ELSEIF CONTAINS([status], 'Mechanical') THEN 'Mechanical' ELSEIF [status] = 'Finished' THEN 'Finished' ELSE 'Other' END" />
+      </column>
+    </datasource>
+  </datasources>
+
+  <worksheets>
+    <worksheet name='Championship Points Trajectory'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Tyre Strategy Impact Heatmap'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Global Driver Talent Pool Map'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Driver Performance Leaderboard'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Grand Prix Host Countries Ranking'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Podium Share Distribution'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='DNF Failure Type Stacked Bar'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+
+    <worksheet name='Driver Reliability Trend Lines'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='f1_master_race_intelligence' name='federated.f1_master' />
+          </datasources>
+        </view>
+      </table>
+    </worksheet>
+  </worksheets>
+
+  <dashboards>
+    <dashboard name='Dashboard 1 - Mr. Arnold (Team Strategy)'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='1' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='48000' id='2' name='Championship Points Trajectory' w='100000' x='0' y='0' />
+          <zone h='52000' id='3' name='Tyre Strategy Impact Heatmap' w='50000' x='0' y='48000' />
+          <zone h='52000' id='4' name='Global Driver Talent Pool Map' w='50000' x='50000' y='48000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <dashboard name='Dashboard 2 - Ms. Lisa (Broadcast Insights)'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='11' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='100000' id='12' name='Driver Performance Leaderboard' w='55000' x='0' y='0' />
+          <zone h='50000' id='13' name='Grand Prix Host Countries Ranking' w='45000' x='55000' y='0' />
+          <zone h='50000' id='14' name='Podium Share Distribution' w='45000' x='55000' y='50000' />
+        </zone>
+      </zones>
+    </dashboard>
+
+    <dashboard name='Dashboard 3 - Mr. Gilchrist (Technical Regulation)'>
+      <style />
+      <size maxheight='900' maxwidth='1400' minheight='900' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='21' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='50000' id='22' name='DNF Failure Type Stacked Bar' w='100000' x='0' y='0' />
+          <zone h='50000' id='23' name='Driver Reliability Trend Lines' w='100000' x='0' y='50000' />
+        </zone>
+      </zones>
+    </dashboard>
+  </dashboards>
+
+  <windows>
+    <window class='dashboard' name='Dashboard 1 - Mr. Arnold (Team Strategy)'>
+      <viewpoints />
+      <active id='-1' />
+    </window>
+    <window class='dashboard' name='Dashboard 2 - Ms. Lisa (Broadcast Insights)'>
+      <viewpoints />
+      <active id='-1' />
+    </window>
+    <window class='dashboard' name='Dashboard 3 - Mr. Gilchrist (Technical Regulation)'>
+      <viewpoints />
+      <active id='-1' />
+    </window>
+  </windows>
+</workbook>
